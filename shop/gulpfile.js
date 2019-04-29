@@ -1,3 +1,5 @@
+let a = 'Hello World';
+
 let gulp = require('gulp'); // подключаем GULP
 let concat = require('gulp-concat'); // подключаем concat
 let importCss = require('gulp-import-css');
