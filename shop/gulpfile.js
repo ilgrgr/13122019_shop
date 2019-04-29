@@ -1,4 +1,4 @@
-let a = 'Hello World';
+let a = 'Hello!';
 
 let gulp = require('gulp'); // подключаем GULP
 let concat = require('gulp-concat'); // подключаем concat
