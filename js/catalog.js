@@ -1,13 +1,15 @@
 class Product {
-    constructor (name, price, pic) {
+    constructor (name, price, pic, id) {
         this.name = name;
         this.price = price;
         this.pic = pic;
+        this.id = id;
         this.el = document.querySelector('.goods');
     }
     renderProduct() {
-        let newProductBlock = document.createElement('div');
+        let newProductBlock = document.createElement('a');
         newProductBlock.classList.add('goods__item');
+        newProductBlock.href = `/description/productdescription.php?id = ${this.id}`;//?product = ${id}
         newProductBlock.innerHTML = `
         <div class="goods__item-photo" style="background-image: url(../images/catalog/${this.pic})"></div>
         <div class="goods__item-name">${this.name}</div>
@@ -50,7 +52,7 @@ class Catalog {
             let data = JSON.parse(xhr.responseText);
             
             data.forEach(function(value) {
-                let newProduct = new Product (value.name, value.price, value.pic);
+                let newProduct = new Product (value.name, value.price, value.pic, value.id);
                 newProduct.renderProduct();
             });
         })
