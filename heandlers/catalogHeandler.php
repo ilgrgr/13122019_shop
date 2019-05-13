@@ -2,7 +2,7 @@
     include($_SERVER['DOCUMENT_ROOT'] . '/db/connect.php');
 
     $id = $_GET['id'];
-    // echo $id;
+
     $query = "SELECT * FROM `categories` WHERE `id` = $id";
     $result = mysqli_query($db, $query);
 

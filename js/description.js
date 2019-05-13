@@ -43,7 +43,7 @@ class Catalog {
         if (id != undefined) {
             id = `?id=${id}`;
         } else {
-            id = window.location.search;
+            id =window.location.search;
         }
 
         let xhr = new XMLHttpRequest;
@@ -54,11 +54,11 @@ class Catalog {
         xhr.addEventListener('load', () => {
             this.preloaderOff();
             let data = JSON.parse(xhr.responseText);
-            
-            data.forEach(function(value) {
-                let newProduct = new Product (value.name, value.price, value.pic);
+            console.log(data);
+            // data.forEach( function(value, index) {
+                let newProduct = new Product (data.name, data.price, data.pic);
                 newProduct.renderProduct();
-            });
+            // });
         })
     }
 }

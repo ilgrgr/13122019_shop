@@ -22,14 +22,4 @@ gulp.task('watch', function(){
     gulp.watch('styles/blocks/**/*.css', gulp.series('styles'));
 })
 
-gulp.task('dev', gulp.series('styles', 'watch'))
-
-// {since: gulp.lastRun('styles')}
-
-// function watchFiles() {
-//     gulp.watch('styles/blocks/**/*.css', gulp.series(generateStyles));
-// }
-
-// gulp.task('watch', watchFiles);
-
-// gulp.task('styles', generateStyles);
+gulp.task('dev', gulp.series('styles', 'watch'));

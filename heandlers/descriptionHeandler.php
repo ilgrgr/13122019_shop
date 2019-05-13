@@ -2,10 +2,10 @@
     include($_SERVER['DOCUMENT_ROOT'] . '/db/connect.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/db/func.php');
 
-    //$id = $_GET['id'];
-    $id = 1;
+    $id = $_GET['id'];
+    // $id = 1;
 
-    d($id);
+    //d($id);
     // echo $id;
     $query = "SELECT * FROM `catalog` WHERE `id` = $id";
     $result = mysqli_query($db, $query);

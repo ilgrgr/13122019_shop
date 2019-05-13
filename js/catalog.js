@@ -9,7 +9,7 @@ class Product {
     renderProduct() {
         let newProductBlock = document.createElement('a');
         newProductBlock.classList.add('goods__item');
-        newProductBlock.href = `/description/productdescription.php?id = ${this.id}`;//?product = ${id}
+        newProductBlock.href = `/description/productdescription.php?id=${this.id}`;//?product = ${id}
         newProductBlock.innerHTML = `
         <div class="goods__item-photo" style="background-image: url(../images/catalog/${this.pic})"></div>
         <div class="goods__item-name">${this.name}</div>
