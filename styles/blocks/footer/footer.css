@@ -32,7 +32,7 @@
    }
    
 .social__item {
-    background: url(../../images/icons/logo.jpg) center center / cover no-repeat;
+    background: center center / cover no-repeat;
     height: 30px;
     width: 30px;
     margin: 10px;

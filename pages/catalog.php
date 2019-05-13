@@ -9,7 +9,7 @@
 
 <body>
     <div class="wrapper">
-        <?=include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/header.php")?>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/header.php")?>
         <main>
         <div class="line"></div>
         <div class="links-navigation">

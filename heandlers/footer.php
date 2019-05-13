@@ -18,9 +18,9 @@
         <span href="#" class="footer-items__links">Сайт разработан в inordic.ru</span>
         <span href="#" class="footer-items__links">2018 Все права защищены</span>
         <div class="social">
-            <div class="social__item"></div>
-            <div class="social__item"></div>
-            <div class="social__item"></div>
+            <div class="social__item" style="background-image: url(/images/icons/twitter.svg)"></div>
+            <div class="social__item" style="background-image: url(/images/icons/facebook.svg)"></div>
+            <div class="social__item" style="background-image: url(/images/icons/instagram.svg)"></div>
         </div>
     </div>
 </footer>
