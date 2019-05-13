@@ -43,14 +43,8 @@
                     <option value="6000-20000">6000-20000</option>
                 </select>
             </div>
-            <div class="goods">   
-            </div>
-            <div class="goods-pages">
-                <div class="goods-pages__item goods-pages__item_hover">1</div>
-                <div class="goods-pages__item">2</div>
-                <div class="goods-pages__item">3</div>
-                <div class="goods-pages__item">4</div>
-            </div>
+            <div class="goods"></div>
+            <div class="goods-pages"></div>
         </section>
         </main>
         <?php include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/footer.php")?>

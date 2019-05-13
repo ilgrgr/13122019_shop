@@ -19,6 +19,8 @@ class Product {
     }
 }
 
+
+
 class Catalog {
     constructor () {
         this.el = document.querySelector('.goods');
@@ -32,6 +34,21 @@ class Catalog {
     preloaderOff() {
         this.clearCatalog();
     }
+    renderPagination(allBlocks, currentBlock) {
+
+        let paginationBlock = document.querySelector('.goods-pages');
+
+        for (let i = 1; i <= allBlocks; i++) {
+            let paginationItem = document.createElement('div');
+            paginationItem.classList.add('goods-pages__item');
+
+            if ( i == currentBlock ) paginationItem.classList.add('goods-pages__item_hover');
+            
+            paginationItem.innerHTML = i;
+
+            paginationBlock.appendChild(paginationItem);
+        }
+    }
     renderCatalog(id) {
         this.clearCatalog();
         this.preloaderOn();
@@ -43,18 +60,19 @@ class Catalog {
         }
 
         let xhr = new XMLHttpRequest;
-        xhr.open('GET', `/heandlers/catalogHeandler.php${id}`);
+        xhr.open('GET', `/heandlers/catalogHeandler.php${id}&pag=2`);
         xhr.send();
 
         
         xhr.addEventListener('load', () => {
             this.preloaderOff();
             let data = JSON.parse(xhr.responseText);
-            
-            data.forEach(function(value) {
+            console.log(data);
+            data.items.forEach(function(value) {
                 let newProduct = new Product (value.name, value.price, value.pic, value.id);
                 newProduct.renderProduct();
             });
+            this.renderPagination( data.pagination.allBlocks, data.pagination.currentActiveBlock );
         })
     }
 }
