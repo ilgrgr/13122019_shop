@@ -66,3 +66,4 @@ class Catalog {
 let catalog = new Catalog();
 document.addEventListener('click', function(){ console.log(this, arguments); });
 catalog.renderCatalog();
+

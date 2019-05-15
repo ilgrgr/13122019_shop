@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 06 2019 г., 14:49
--- Версия сервера: 10.1.30-MariaDB
--- Версия PHP: 5.6.33
+-- Время создания: Май 15 2019 г., 14:19
+-- Версия сервера: 10.1.38-MariaDB
+-- Версия PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -91,6 +91,40 @@ INSERT INTO `categories` (`id`, `name`, `parent_category`) VALUES
 (13, 'Брюки-д', 3),
 (14, 'Обувь-д', 3);
 
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `emails`
+--
+
+CREATE TABLE `emails` (
+  `id` int(10) UNSIGNED NOT NULL COMMENT 'id пользователя',
+  `email` varchar(50) NOT NULL COMMENT 'email'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `emails`
+--
+
+INSERT INTO `emails` (`id`, `email`) VALUES
+(1, 'daronmalakian992@gmail.com'),
+(2, 'ivanov@mail.ru'),
+(3, 'ivanov@mail.ru'),
+(4, 'ivanov@mail.ru'),
+(5, 'ivanov@mail.ru'),
+(6, 'ivanov@mail.ru'),
+(7, 'ivanov@mail.ru'),
+(8, 'ivanov@mail.ru'),
+(9, 'ivanov@mail.ru'),
+(10, 'ivanov@mail.ru'),
+(11, 'ivanov@mail.ru'),
+(12, 'ivanov@mail.ru'),
+(13, 'ivanov@mail.ru'),
+(14, ''),
+(15, ''),
+(16, ''),
+(17, '');
+
 --
 -- Индексы сохранённых таблиц
 --
@@ -108,6 +142,12 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `emails`
+--
+ALTER TABLE `emails`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
@@ -122,6 +162,12 @@ ALTER TABLE `catalog`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT для таблицы `emails`
+--
+ALTER TABLE `emails`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id пользователя', AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

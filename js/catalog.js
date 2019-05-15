@@ -88,3 +88,4 @@ catalogCategories.addEventListener('change', () => {
     let catID = catalogCategories.value;
     catalog.renderCatalog(catID);
 });
+

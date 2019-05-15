@@ -50,5 +50,6 @@
         <?php include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/footer.php")?>
     </div>
     <script src="../js/catalog.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
 </body>
 </html>
