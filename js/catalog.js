@@ -24,6 +24,7 @@ class Product {
 class Catalog {
     constructor () {
         this.el = document.querySelector('.goods');
+        this.pagBlocks =  document.querySelector('.goods-pages');
     }
     clearCatalog() {
         this.el.innerHTML = '';
@@ -36,7 +37,7 @@ class Catalog {
     }
     renderPagination(allBlocks, currentBlock) {
 
-        let paginationBlock = document.querySelector('.goods-pages');
+        this.pagBlocks.innerHTML = '';
 
         for (let i = 1; i <= allBlocks; i++) {
             let paginationItem = document.createElement('div');
@@ -46,21 +47,36 @@ class Catalog {
             
             paginationItem.innerHTML = i;
 
-            paginationBlock.appendChild(paginationItem);
+            this.pagBlocks.appendChild(paginationItem);
         }
     }
-    renderCatalog(id) {
+    addListenersToPagination() {
+        let blocks = document.querySelectorAll('.goods-pages__item:not(.goods-pages__item_hover)');
+        
+        blocks.forEach(function(value, index) {
+            value.addEventListener('click', function() {
+                let pageNumber = this.innerText;
+                catalog.renderCatalog(undefined, pageNumber);
+            });
+        });
+    }
+    renderCatalog(id, page = 1) {
         this.clearCatalog();
         this.preloaderOn();
+
+        console.log( page);
 
         if (id != undefined) {
             id = `?id=${id}`;
         } else {
             id = window.location.search;
+            if (id == '') {
+                id = `?id=1`;
+            }
         }
 
         let xhr = new XMLHttpRequest;
-        xhr.open('GET', `/heandlers/catalogHeandler.php${id}&pag=2`);
+        xhr.open('GET', `/heandlers/catalogHeandler.php${id}&pag=${page}`);
         xhr.send();
 
         
@@ -73,6 +89,7 @@ class Catalog {
                 newProduct.renderProduct();
             });
             this.renderPagination( data.pagination.allBlocks, data.pagination.currentActiveBlock );
+            this.addListenersToPagination();
         })
     }
 }

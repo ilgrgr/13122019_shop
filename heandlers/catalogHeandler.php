@@ -14,7 +14,7 @@
     ];
 
     $lastGoodNumber = $pag *$goodsOnPage;
-    $firstGoodNumber = ($pag - 1) * $goodsOnPage + 1;
+    $firstGoodNumber = ($pag - 1) * $goodsOnPage;
     // 1 --> 1-6
     // 2 --> 7-12
     // 3 --> 13-18
@@ -25,7 +25,7 @@
 
     $cat = mysqli_fetch_assoc($result)['parent_category'];
 
-    sleep(3);
+    // sleep(3);
 
     // ищем дочерние категории
     if ($cat == 0) {
@@ -52,7 +52,7 @@
 
 
         // получение только нужных товаров
-        $query = "SELECT * FROM `catalog` WHERE `category_id` IN ($cats) LIMIT {$firstGoodNumber}, {$lastGoodNumber}";
+        $query = "SELECT * FROM `catalog` WHERE `category_id` IN ($cats) LIMIT {$firstGoodNumber}, {$goodsOnPage}";
         $result = mysqli_query($db, $query);
 
         // добавляем товары в массив $items
@@ -72,7 +72,7 @@
 
 
         // получение только нужных товаров
-        $query = "SELECT * FROM `catalog` WHERE `category_id` IN ($cats) LIMIT {$firstGoodNumber}, {$lastGoodNumber}";
+        $query = "SELECT * FROM `catalog` WHERE `category_id` IN ($cats) LIMIT {$firstGoodNumber}, {$goodsOnPage}";
         $result = mysqli_query($db, $query);
         
         // добавляем товары в массив $items
