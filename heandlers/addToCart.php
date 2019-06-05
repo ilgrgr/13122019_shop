@@ -1,65 +1,105 @@
 <?php
-    echo 'Привет! Я добавлю товары в корзину!';
+include($_SERVER['DOCUMENT_ROOT'] . '/db/connect.php');
+session_start();
 
-    if (!isset($_GET['id'])) {
-        die();
-    }
 
-    session_start();
+    // echo '<pre>';
+    // print_r($_GET);
+    // echo '</pre>';
 
-    if (isset($_SESSION['cartCount'])) {
-        $_SESSION['cartCount']++;
-    } else {
-        $_SESSION['cartCount'] = 1;
-    }
+// проверяем GET параметр на пустоту
+if (!isset($_GET['addCartId']) ) {
 
-    $cartItem = [
-        'id' => $_GET['id'],
-        'count' => 1
-    ];
+    if (isset($_GET['upProduct']) ) {
+        $idUp = $_GET['upProduct'];
+        foreach ($_SESSION['cartlist'] as $key => $value) {
 
-    if (!isset($_SESSION['cart'])) {
-        $_SESSION['cart'] = [];
-        array_push($_SESSION['cart'], $cartItem);
-    } else {
-
-        $goal = false;
-        // проверяем на наличие товара в массиве
-        foreach ($_SESSION['cart'] as $key => $value) {
-
-            if ($_GET['id'] == $value['id']) {
-                $_SESSION['cart'][$key]['count']++;
-                $goal = true; 
+            if ($value['id'] == $idUp ) {
+                $_SESSION['cartlist'][$key]['count']++;
+                $_SESSION['cartCount']++;
+                
             }
         }
+    }
 
-        if ( $goal == false) {
-            array_push($_SESSION['cart'], $cartItem);
+    if (isset($_GET['reduceProduct']) ) {
+        $idReduce = $_GET['reduceProduct'];
+        foreach ($_SESSION['cartlist'] as $key => $value) {
+            if ($value['id'] == $idReduce ) {
+                 
+                if( $_SESSION['cartlist'][$key]['count'] >= 2) {
+                    $_SESSION['cartlist'][$key]['count']--;
+                    $_SESSION['cartCount']--;
+                    
+                }
+                
+            }
         }
     }
 
-    //$id = 5;
+    if ( isset($_GET['deletProduct']) ) {
+        $deletProduct = $_GET['deletProduct'];
 
-    print_r($_SESSION['cartCount']);
-    echo '<br>';
-    echo '<pre>';
-    print_r($_SESSION['cart']);
-    echo '</pre>';
+        foreach ($_SESSION['cartlist'] as $key => $value) {
 
-    // $_SESSION = [
-    //     'cart' => [
-    //         0 => [
-    //             'id' => 2,
-    //             'count' => 1
-    //         ],
-    //         1 => [
-    //             'id' => 4,
-    //             'count' => 1
-    //         ]
-    //     ],
-    //     'cartCount' => 0 
-    // ];
+            if ($value['id'] == $deletProduct ) {
+                $_SESSION['cartCount'] = $_SESSION['cartCount'] - $value['count'];
+                array_splice($_SESSION['cartlist'], $key, 1);
+            }
+        }
+    }
+    
+    echo json_encode($_SESSION);
+    die();
+}
+
+
+$id = $_GET['addCartId'];
+// проверяем  счетчик товаров в карзине
+if (isset($_SESSION['cartCount'])) {
+    $_SESSION['cartCount']++;                    
+} else {
+    $_SESSION['cartCount'] = 1;
+}
+
+$query = "SELECT * FROM `catalog` WHERE `id` IN ($id)";
+    $result = mysqli_query($db, $query);
+    
+    while($row = mysqli_fetch_assoc($result) ) {
+
+        $row['count'] =1;  
+
+        if (!isset($_SESSION['cartlist'])) {                  
+            $_SESSION['cartlist'] = [];
+                                  
+            array_push($_SESSION['cartlist'], $row);
+        } 
+            else {
+        
+                $goal = false;
+                // проверяем на уникальность товара в массиве
+                foreach($_SESSION['cartlist'] as $key => $value) {
+                    
+                    if ($value['id'] == $id) {
+                        $_SESSION['cartlist'][$key]['count']++;
+                        $goal = true; 
+                    }
+                }
+        
+                if ( $goal == false) {
+                    
+                    array_push($_SESSION['cartlist'], $row);  
+                }
+            }
+ 
+    }
+
+    echo json_encode($_SESSION);
+
+    // echo '<pre>';
+    // print_r($_SESSION);
+    // echo '</pre>';
+
 
     // session_destroy();
-
 ?>

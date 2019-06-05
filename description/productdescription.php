@@ -2,6 +2,8 @@
 
     include($_SERVER['DOCUMENT_ROOT'] . "/db/connect.php");
     include($_SERVER['DOCUMENT_ROOT'] . '/db/func.php');
+    include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/head.php");
+    
 
     // echo '<pre>';
     // print_r ($_GET);
@@ -38,44 +40,12 @@
         }
     }
 
-    // echo '<pre>';
-    // print_r ($template);
-    // echo '</pre>'
-
 ?>
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Описание товара</title>
-    <link rel="stylesheet" href="../styles/dest/style.css">
-</head>
+
 <body>
     <div class="wrapper">
-        <header class="header">
-            <div class="header__flex">
-            <div class="logo logo_margin-right"></div>
-            <nav class="navigation">
-                <?php foreach($template['cats'] as $key => $value):?>
-                <a href="/pages/catalog.php?id=<?=$value['id']?>" class="navigation__item"><?=$value['name']?></a>
-                <?php endforeach;?>
-                <a href="#" class="navigation__item">Новинки</a>
-                <a href="#" class="navigation__item">О нас</a>
-            </nav>
-            </div>
-            <div class="header__flex">
-            <div class="icon-text">
-                <div class="icon-text__icon icon-text__icon_photo"></div>
-                <div class="icon-text__text">Привет, Пользователь (<a class="main-link main-link_orange" href="#">выйти</a>)</div>
-            </div>
-            <div class="icon-text">
-                <div class="icon-text__icon icon-text__icon_basket"></div>
-                <div class="icon-text__text">Корзина (5)</div>
-            </div>
-            </div>
-        </header>
+        <?php include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/header.php");?>
+
         <main>
             <div class="line"></div>
             <div class="links-navigation">

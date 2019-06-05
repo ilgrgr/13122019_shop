@@ -10,10 +10,12 @@
     text-transform: uppercase;
     font-size: 13px;
     font-style: inherit;
-    margin: 2vw 10px 2vw 10px;
+    padding: 10px;
+    /* margin: 2vw 10px 2vw 10px; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    border-bottom: 2px solid rgb(194, 194, 194);
 }
 
 .formatting {
@@ -58,11 +60,24 @@
     align-items: center;
 }
 
+.formatting__quantity-change-up {
+    border: 1px solid rgb(0, 0, 0);
+    width: 9px;
+    height: 10px;
+    background: rgb(1, 100gu, 30);
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    margin: 1px 7px;
+    text-align: center;
+    line-height: 75%;
+    cursor: pointer;
+}
+
 .formatting__quantity-change {
     border: 1px solid rgb(0, 0, 0);
     width: 9px;
     height: 10px;
-    background: rgb(0, 0, 0);
+    background: rgb(151, 1, 1);
     color: rgb(255, 255, 255);
     font-size: 13px;
     margin: 1px 7px;
@@ -112,3 +127,16 @@
     transform: rotate(45deg);
 }
  
+.buttonCardAdd {
+    height: 35px;
+    width: 100%;
+    background: blanchedalmond;
+    border: 1px solid #fdbc05;
+    border-radius: 44px;
+    text-align: center;
+    line-height: 35px;
+    text-decoration: none;
+    /* text-decoration: none; */
+    margin: 10px auto;
+    cursor: pointer;
+}

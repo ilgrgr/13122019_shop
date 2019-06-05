@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['cartCount'])) {
+    $_SESSION['cartCount']=0;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>

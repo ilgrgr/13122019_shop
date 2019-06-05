@@ -16,7 +16,7 @@
         </div>
         <div class="icon-text">
             <div class="icon-text__icon icon-text__icon_basket"></div>
-            <div class="icon-text__text">Корзина (5)</div>
+            <a href='/pages/basket.php' class="icon-text__text bascet-count"><?= 'Корзина (' . $_SESSION['cartCount'].')';?></a>
         </div>
     </div>
 </header>

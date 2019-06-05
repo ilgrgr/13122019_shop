@@ -1,4 +1,5 @@
 <?php
+
     //получение id
     if ( isset($_GET['id']) ) {
         $cat = $_GET['id'];

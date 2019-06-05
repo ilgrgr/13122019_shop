@@ -20,11 +20,12 @@
 
 .goods__item-name{
     font-weight: bold;
-    margin-top: 35px;
-    margin-bottom: 10px;
-    font-size: 12px;
+    margin: 10px;
+    /* margin-bottom: 10px; */
+    font-size: 14px;
 }
 
 .goods__item-price {
-    font-size: 12px;   
+    margin: 10px;
+    font-size: 14px;   
 }

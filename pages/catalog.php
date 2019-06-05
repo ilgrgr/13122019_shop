@@ -1,10 +1,15 @@
 <?php
 
+
     include($_SERVER['DOCUMENT_ROOT'] . "/db/connect.php");
     include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/chooseCategory.php");
 
     $title = 'Каталог товаров';
     include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/head.php");
+    
+// echo '<pre>';
+// print_r($_SESSION);
+// echo '</pre>';
 ?>
 
 <body>
@@ -45,6 +50,7 @@
             </div>
             <div class="goods"></div>
             <div class="goods-pages"></div>
+            
         </section>
         </main>
         <?php include($_SERVER['DOCUMENT_ROOT'] . "/heandlers/footer.php")?>

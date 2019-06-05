@@ -3,7 +3,7 @@
 
     $id = $_GET['id'];
     $pag = ( isset($_GET['pag']) ) ? $_GET['pag'] : 1;
-    $goodsOnPage = 1;
+    $goodsOnPage = 2;
 
     $catalogInfo = [
         'items' => [],
@@ -24,8 +24,6 @@
     $result = mysqli_query($db, $query);
 
     $cat = mysqli_fetch_assoc($result)['parent_category'];
-
-    // sleep(3);
 
     // ищем дочерние категории
     if ($cat == 0) {

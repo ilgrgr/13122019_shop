@@ -5,24 +5,63 @@ class Product {
         this.pic = pic;
         this.id = id;
         this.el = document.querySelector('.goods');
+        
     }
     renderProduct() {
-        let newProductBlock = document.createElement('a');
+        let newProductBlock = document.createElement('div');
         newProductBlock.classList.add('goods__item');
-        newProductBlock.href = `/description/productdescription.php?id=${this.id}`;//?product = ${id}
+
+        // newProductBlock.href = `/description/productdescription.php?id=${this.id}`;//?product = ${id}
         newProductBlock.innerHTML = `
-        <div class="goods__item-photo" style="background-image: url(../images/catalog/${this.pic})"></div>
-        <div class="goods__item-name">${this.name}</div>
+        <div onclick=location.href=/description/productdescription.php?id=${this.id}' class="goods__item-photo" style="background-image: url(../images/catalog/${this.pic})"></div>
+        <a href='/description/productdescription.php?id=${this.id}' class="goods__item-name">${this.name}</a>
         <div class="goods__item-price">${this.price} руб.</div>
         `;
-        this.el.appendChild(newProductBlock)
+        this.el.appendChild(newProductBlock );
+
+        let buttonAddCart = document.createElement('div');
+        buttonAddCart.classList.add('buttonCardAdd');
+        buttonAddCart.innerText = 'Добавить в корзину';
+        newProductBlock.appendChild(buttonAddCart);
+
+        buttonAddCart.addEventListener('click', () => {
+            
+            // $_GET['addCartId'] = this.id;
+
+            let xhr = new XMLHttpRequest;
+            xhr.open('GET', `/heandlers/addToCart.php?addCartId=${this.id}`);
+            xhr.send();
+
+            // alert (`отправлен ID ${this.id}` );
+    
+            xhr.addEventListener('load', function() {
+
+                console.log(JSON.parse(xhr.responseText));
+
+                let data = JSON.parse(xhr.responseText);
+
+                let counter = data.cartCount;
+                let counterBasket = document.querySelector('.bascet-count');
+                // counterBasket.classList.add('icon-text__text');
+                counterBasket.innerText = `Корзина (${counter})`;
+                
+                // let elbascout = document.querySelector('.bascet-count');
+                // elbascout.appendChild(counterBasket);
+
+            });
+
+
+
+            // alert(`РАботает ${this.id}`);
+        });
+   
     }
+
 }
-
-
 
 class Catalog {
     constructor () {
+        this.addCartArr = [];
         this.el = document.querySelector('.goods');
         this.pagBlocks =  document.querySelector('.goods-pages');
     }
@@ -50,6 +89,7 @@ class Catalog {
             this.pagBlocks.appendChild(paginationItem);
         }
     }
+
     addListenersToPagination() {
         let blocks = document.querySelectorAll('.goods-pages__item:not(.goods-pages__item_hover)');
         
@@ -60,11 +100,18 @@ class Catalog {
             });
         });
     }
+
+    addCartArr(id) {
+        
+        this.addCartArr =  id;
+    }
+
     renderCatalog(id, page = 1) {
         this.clearCatalog();
         this.preloaderOn();
 
         console.log( page);
+       
 
         if (id != undefined) {
             id = `?id=${id}`;
@@ -84,6 +131,7 @@ class Catalog {
             this.preloaderOff();
             let data = JSON.parse(xhr.responseText);
             console.log(data);
+
             data.items.forEach(function(value) {
                 let newProduct = new Product (value.name, value.price, value.pic, value.id);
                 newProduct.renderProduct();
